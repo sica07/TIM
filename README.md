@@ -1,2 +1,3 @@
 #TIM
-##a chrome extension to track the equivalent in money of the time you (unproductively) spend on internet
+####a chrome extension 
+Track the equivalent in money of the time you (unproductively) spend on internet
