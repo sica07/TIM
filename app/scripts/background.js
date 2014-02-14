@@ -22,11 +22,8 @@ function extractDomain(url) {
 
 
 function isTimewaster(url) {
-    /*if (!url.match(/^http/)) {
-      return false;
-      }*/
-    var timewaster = JSON.parse(localStorage.timewasters);
-    for (var i = 0; i < timewaster.length; i++) {
+    var i, timewaster = JSON.parse(localStorage.timewasters);
+    for (i = 0; i < timewaster.length; i++) {
         console.log(url.match(timewaster[i]));
         if (url.match(timewaster[i])) {
             console.log('da');
@@ -38,17 +35,13 @@ function isTimewaster(url) {
 
 function init(){
     var storage = {};
-    /*hack*/
-
-    localStorage.timewasters = JSON.stringify(['facebook.com', 'plus.google.com']);
-    /*end of hack*/
 
 
     if(!localStorage.timewasters){
-        notify('The timewasters list is empty. Please add at one site');
+        localStorage.timewasters = JSON.stringify(['facebook.com', 'plus.google.com']);
     }
     if(!localStorage.rate){
-        notify('You didn\'t filled the rate per hour. I\'m not able to calculate without it.');
+        localStorage.rate = 10;
     } else {
         CENT_PER_SECOND = (localStorage.rate * 100) / 3600;
     }
@@ -56,7 +49,7 @@ function init(){
         localStorage.currency = '$';
     }
     if(!localStorage.denomination){
-        localStorage.denomination = 'c';
+        localStorage.denomination = '¢';
     }
 
 }
@@ -66,7 +59,7 @@ function createTodayIndex() {
     now   = new Date();
     day   = now.getDate();
     month = now.getMonth();
-    today = day+''+month;
+    today = day+'_'+month;
 
     return today;
 }

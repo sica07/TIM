@@ -8,8 +8,14 @@
     </head>
     <body>
         <div class="display: none;" id="notify"></div>
-        <input type="text" id="rate" value="" placeholder="rate per hour"/>
+        <label for="rate">Rate: </label>
+        <input type="text" id="rate" value="" placeholder="ex: 10"/>
+        <label for="currency">Currency symbol: </label>
+        <input type="text" id="currency" value="" placeholder="ex: $"/>
+        <label for="currency">Currency subunit symbol: </label>
+        <input type="text" id="denomination" value="" placeholder="ex: c"/>
         <br/>
+        <label for="timewasters">Websites blacklist<br/> <span>(one per line)</span> </label>
         <textarea id="timewasters" placeholder="add each website on a new line, and without the \'http://\'" rows="10" cols="30"> </textarea>
         <br/>
         <button id="save">Save</button>

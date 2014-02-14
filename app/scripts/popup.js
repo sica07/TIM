@@ -9,6 +9,7 @@ function showTodayStatistics(){
     var row, todayArr, html, amt, total = 0;
 
     todayArr = bg.getSumWastedToday();
+    if(todayArr.length > 0){
     html = ' <tr> <th>website</th> <th>wasted</th> </tr>';
     for (var i = 0, l = todayArr.length; i < l; i ++) {
 
@@ -39,6 +40,10 @@ function showTodayStatistics(){
 
         }
         html += row;
+    }
+    } else {
+        html ='<tr><th>no data</th> <th>yet</th></tr>';
+
     }
     document.getElementById('today_table').innerHTML = html;
 }
