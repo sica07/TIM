@@ -5,17 +5,24 @@ html {
 
 }
 body {
-    width: 200px;
-    background: #fff;
+    min-width: 200px;
+    background: #eee;
     font: 14px/21px "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    overflow: hidden;
+    margin: 0px;
     color: #444;
     -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
     -webkit-text-size-adjust: 100%;
 }
 table {
+    width: 100%;
+    height: 100%;
     border-collapse: collapse;
     border-spacing: 0; 
 }
+th, td { text-align: left; padding: 2px 5px;}
+.border-top {border-top: 1px solid #ccc;}
+.border-bottom {border-bottom: 1px solid #ccc;}
 form {
     margin-bottom: 20px; }
 input[type="text"],
@@ -115,3 +122,23 @@ legend span {
 		padding-left: 0 !important;
 		padding-right: 0 !important;
 		text-align: center; }
+#options-content {
+background-color: #FFF;
+width: 420px;
+margin: auto;
+padding: 0.5em 4em 5em;
+margin-top: 5em;
+}
+#header {
+border-bottom: 1px solid #DDD;
+margin-bottom: 2em;
+}
+#popup-container {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    border-top: 5px solid #666;
+    border-bottom: 5px solid #666;
+    background: #fff;;
+}

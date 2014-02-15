@@ -1,13 +1,17 @@
 <!doctype html>
 <html>
     <head>
+        <title>TIM - set options</title>
         <link href="styles/main.css" rel="stylesheet">
-        <!-- build:js scripts/options.js -->
         <script src="scripts/options.js"></script>
-        <!-- endbuild -->
     </head>
     <body>
+        <div id="options-content">
+        
         <div class="display: none;" id="notify"></div>
+        <div id="header">
+            <h1>TIM - Time is Money</h1>
+        </div>
         <label for="rate">Rate: </label>
         <input type="text" id="rate" value="" placeholder="ex: 10"/>
         <label for="currency">Currency symbol: </label>
@@ -19,5 +23,6 @@
         <textarea id="timewasters" placeholder="add each website on a new line, and without the \'http://\'" rows="10" cols="30"> </textarea>
         <br/>
         <button id="save">Save</button>
+</div>
     </body>
 </html>

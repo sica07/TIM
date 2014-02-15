@@ -10,7 +10,7 @@ function showTodayStatistics(){
 
     todayArr = bg.getSumWastedToday();
     if(todayArr.length > 0){
-    html = ' <tr> <th>website</th> <th>wasted</th> </tr>';
+    html = ' <tr class="border-bottom"> <th>website</th> <th>wasted</th> </tr>';
     for (var i = 0, l = todayArr.length; i < l; i ++) {
 
         amt = calculateWaste(todayArr[i][1]);
@@ -26,14 +26,14 @@ function showTodayStatistics(){
         if(i == l-1) {
             if(total < 1){
                 console.log(total);
-                total = total*100 +' '+localStorage.denomination;
+                total = total*100 +' <b>'+localStorage.denomination+'</b>';
                 console.log(total);
             } else {
                 console.log(total);
-                total = total+' '+localStorage.currency;
+                total = total+' <b>'+localStorage.currency+'</b>';
                 console.log(total);
             }
-            row += '<tr>';
+            row += '<tr class="border-top">';
             row += '<td><b>TOTAL </b></td>';
             row += '<td>'+total+'</td>';
             row += '</tr>';
@@ -50,6 +50,7 @@ function showTodayStatistics(){
 function calculateWaste(seconds){
     var amt, rate, currency = localStorage.currency;
     amt = seconds * bg.CENT_PER_SECOND;
+    console.log(amt)
 
     if(amt < 1){
         return 'NA';

@@ -42,9 +42,8 @@ function init(){
     }
     if(!localStorage.rate){
         localStorage.rate = 10;
-    } else {
-        CENT_PER_SECOND = (localStorage.rate * 100) / 3600;
     }
+    CENT_PER_SECOND = (localStorage.rate * 100) / 3600;
     if(!localStorage.currency){
         localStorage.currency = '$';
     }
