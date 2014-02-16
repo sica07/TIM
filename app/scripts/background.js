@@ -1,5 +1,6 @@
 var PERIOD = 6;
 var CENT_PER_SECOND = 0;
+
 init();
 function extractDomain(url) {
     var re = /:\/\/(www\.)?(.+?)\//;
