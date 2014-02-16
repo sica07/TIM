@@ -1,38 +1,19 @@
 var PERIOD = 6;
 var CENT_PER_SECOND = 0;
 init();
-
-function notify($msg){
-    console.warn($msg);
-    /*chrome.tabs.create({
-url: 'options.html'
-}, function(tab){
-console.log(tab);
-    //var theCode ='<script>       var notify = document.getElementById("notify"); notify.style.display = "block"; setTimeout(function(){ notify.style.display = "none"; }, 3000);</script>';
-    tab.executeScript(tab.index, theCode);
-    }
-    );*/
-
-}
-
 function extractDomain(url) {
     var re = /:\/\/(www\.)?(.+?)\//;
         return url.match(re)[2];
 }
-
-
 function isTimewaster(url) {
     var i, timewaster = JSON.parse(localStorage.timewasters);
     for (i = 0; i < timewaster.length; i++) {
-        console.log(url.match(timewaster[i]));
         if (url.match(timewaster[i])) {
-            console.log('da');
             return true;
         }
     }
     return false;
 }
-
 function init(){
     var storage = {};
 
@@ -43,7 +24,7 @@ function init(){
     if(!localStorage.rate){
         localStorage.rate = 10;
     }
-    CENT_PER_SECOND = (localStorage.rate * 100) / 3600;
+    calculateCentPerSecond();
     if(!localStorage.currency){
         localStorage.currency = '$';
     }
@@ -80,13 +61,12 @@ function addTimeSpent(){
                         }
                         var tab = tabs[0];
                         var website = extractDomain(tab.url);
+                        chrome.pageAction.show(tab.id);
                         if (!isTimewaster(website)) {
                             return false;
                         } else {
 
                             today = createTodayIndex();
-
-
                             if(!localStorage[website] ){
                                 datas = {};
                                 datas[today] = PERIOD;
@@ -110,12 +90,31 @@ function addTimeSpent(){
                                 }
                                 localStorage[website] = JSON.stringify(datas);
                             }
+
+                            createBadge(tab.id, website);
                         }
                     });
                 }
             });
         }
     });
+}
+function calculateTotalTimeWastedToday(website){
+    var i, amt, todayArr, total = 0;
+
+    todayArr = getSumWastedToday();
+
+    for (i = 0, l = todayArr.length; i < l; i ++) {
+        if(todayArr[i][0] === website){
+            amt = calculateWaste(todayArr[i][1]);
+        }
+        if(amt[1] == localStorage.denomination){
+            amt[0] = amt[0]/100;
+        }
+        total = parseFloat(amt[0]);
+    }
+
+    return total;
 }
 function getSumWastedToday() {
     var today, todayArr = [], timewasterArr;
@@ -134,6 +133,72 @@ function getSumWastedToday() {
     return todayArr;
 
 }
+function calculateCentPerSecond(){
+    CENT_PER_SECOND = (localStorage.rate * 100) / 3600;
+}
+function createCanvas(amt) {
+    var canvas, context, imageData, dailyText, x = 1;
 
+    canvas = document.createElement('canvas');
+    canvas.setAttribute('id','canvas');
+    canvas.style.width = '19px';
+    canvas.style.height = '13px';
+    canvas.style.display = 'none';
+
+    document.body.appendChild(canvas);
+
+
+    context = canvas.getContext('2d');
+
+    /*context.strokeStyle = "#000";
+      context.strokeRect(0,  0, 19, 13);*/
+
+
+    context.fillStyle = "#8c9566";
+    context.fillRect(0, 0, 19, 15);
+
+
+    context.fillStyle = "#fff";
+    context.font = "9px Helvetica";
+
+
+
+
+    context.fillText(amt, 0, 10);
+
+    imageData = context.getImageData(0, 0, 19, 13);
+
+    return imageData;
+}
+function calculateWaste(seconds){
+    var amt, rate, currency = localStorage.currency;
+    amt = seconds * CENT_PER_SECOND;
+
+    if(amt < 1){
+        return 'NA';
+    }
+    if(amt < 100){
+        currency = localStorage.denomination;
+    } else {
+        amt = amt / 100;
+    }
+    return [amt.toFixed(2), currency];
+}
+
+function createBadge(tabId, website){
+    var icon, amt = calculateTotalTimeWastedToday(website);
+
+
+    if(amt > 0.1) {
+        icon = createCanvas(amt);
+        console.log(icon);
+        chrome.pageAction.setIcon({
+            tabId: tabId,
+            imageData: icon
+        });
+    } else {
+        chrome.pageAction.setIcon({tabId: tabId, path: 'images/icon-19.png'});
+    }
+}
 setInterval(addTimeSpent, 1000*PERIOD);
 

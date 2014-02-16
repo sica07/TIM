@@ -23,6 +23,7 @@ document.onreadystatechange = function () {
 
 function save(){
     var rate, lines, currency, denomination;
+
     rate = document.getElementById("rate").value;
     currency = document.getElementById("currency").value;
     denomination = document.getElementById("denomination").value;
