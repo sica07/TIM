@@ -27,9 +27,9 @@ function showTodayStatistics(){
             if(i == l-1) {
 
                 if(total < 1){
-                    total = total*100 +' <b>'+localStorage.denomination+'</b>';
+                    total = (total*100).toFixed(2)+' <b>'+localStorage.denomination+'</b>';
                 } else {
-                    total = total+' <b>'+localStorage.currency+'</b>';
+                    total = (total).toFixed(2)+' <b>'+localStorage.currency+'</b>';
                 }
                 row += '<tr class="border-top">';
                 row += '<td><b>TOTAL </b></td>';

@@ -107,12 +107,16 @@ function calculateTotalTimeWastedToday(website){
 
     for (i = 0, l = todayArr.length; i < l; i ++) {
         if(todayArr[i][0] === website){
+                        console.log(todayArr[i][0]);
             amt = calculateWaste(todayArr[i][1]);
-        }
-        if(amt[1] == localStorage.denomination){
-            amt[0] = amt[0]/100;
-        }
+
+            if(amt[1] == localStorage.denomination){
+                amt[0] = amt[0]/100;
+            }
+                        console.log(amt);
         total = parseFloat(amt[0]);
+                        console.log(total);
+        }
     }
 
     return total;
@@ -189,10 +193,11 @@ function calculateWaste(seconds){
 function createBadge(tabId, website){
     var icon, amt = calculateTotalTimeWastedToday(website);
 
+    amt = manageAmountDecimals(amt);
 
-    if(amt > 0.1) {
+
+    if(amt > 0) {
         icon = createCanvas(amt);
-        console.log(icon);
         chrome.pageAction.setIcon({
             tabId: tabId,
             imageData: icon
@@ -200,6 +205,17 @@ function createBadge(tabId, website){
     } else {
         chrome.pageAction.setIcon({tabId: tabId, path: 'images/icon-19.png'});
     }
+}
+
+function manageAmountDecimals(amt){
+    if(amt > 10){
+        amt = amt.toFixed(1);
+    } else {
+
+        amt = amt.toFixed(2);
+    }
+
+    return amt;
 }
 setInterval(addTimeSpent, 1000*PERIOD);
 
