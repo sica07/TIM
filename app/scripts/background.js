@@ -17,6 +17,7 @@ function isTimewaster(url) {
 }
 function init(){
     var storage = {};
+    var today = createTodayIndex();
 
 
     if(!localStorage.timewasters){
@@ -24,6 +25,14 @@ function init(){
     }
     if(!localStorage.rate){
         localStorage.rate = 10;
+    }
+    if(!localStorage.days){
+        localStorage.days = JSON.stringify([today]);
+    } else if (localStorage.days){
+        var days = JSON.parse(localStorage.days);
+        if(!days[today]){
+            days.push(today);
+        }
     }
     calculateCentPerSecond();
     if(!localStorage.currency){
