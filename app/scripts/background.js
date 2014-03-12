@@ -32,6 +32,7 @@ function init(){
         var days = JSON.parse(localStorage.days);
         if(!days[today]){
             days.push(today);
+            localStorage.days = JSON.stringify(days);
         }
     }
     calculateCentPerSecond();
@@ -139,7 +140,10 @@ function getSumWastedToday() {
         var data = {};
         if(localStorage[timew]){
             timewaster = JSON.parse(localStorage[timew]);
-            data =  [timew, timewaster[today]];
+            if(!timewaster[today]){
+                timewaster[today] = 0;
+            }
+                data =  [timew, timewaster[today]];
             todayArr.push(data);
         }
     }
@@ -189,7 +193,7 @@ function calculateWaste(seconds){
     amt = seconds * CENT_PER_SECOND;
 
     if(amt < 1){
-        return 'NA';
+        amt = 0;
     }
     if(amt < 100){
         currency = localStorage.denomination;
