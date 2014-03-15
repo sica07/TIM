@@ -30,7 +30,7 @@ function init(){
         localStorage.days = JSON.stringify([today]);
     } else if (localStorage.days){
         var days = JSON.parse(localStorage.days);
-        if(!days[today]){
+        if(days[days.length - 1] !== today){
             days.push(today);
             localStorage.days = JSON.stringify(days);
         }
