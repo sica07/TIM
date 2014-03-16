@@ -38,15 +38,20 @@ function save(){
 }
 
 function saveSitesList(lines) {
-    var line, texts = [];
+    var url, line, datas, texts = [];
     for (var i=0; i < lines.length; i++) {
         // only push this line if it contains a non whitespace character.
         line = lines[i];
         if (/\S/.test(line)) {
-            texts.push(line.trim());
+            url = line.trim();
+            texts.push(url);
+            if(!localStorage.hasOwnProperty(url)){
+                datas = {};
+                datas[0] = 0;
+                localStorage[url] = JSON.stringify(datas);
+            }
         }
     }
-    console.log(texts)
 
     localStorage.timewasters = JSON.stringify(texts);
 }
