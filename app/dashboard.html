@@ -1,10 +1,21 @@
 <!doctype html>
 <html>
 <head>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script src="scripts/dashboard.js"></script>
+    <link href="styles/main.css" rel="stylesheet">
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="scripts/dashboard.js"></script>
 </head>
 <body>
-<div id="chart_div" style="width: 600px; height: 300px;"></div>
+    <ul class="headbar">
+        <li class="title">Last 30 days</li>
+        <li><a href="overall.html" class="link_button">Overall</a></li>
+        <li><a href="popup.html" class="link_button">Today</a></li>
+    </ul>
+    <div id="chart_div" ></div>
+    <div class="footer">
+        <a href="options.html" style="float: left;"  target="new">options</a>
+        <a href="#" style="float: right;"  target="new"> | feedback</a> 
+        <a href="https://github.com/sica07/TIM" style="float: right;" target="new">github</a>
+    </div>
 </body>
 </html>

@@ -5,7 +5,6 @@ var timewasters = JSON.parse(localStorage.timewasters);
     var data, legend= [],
     arr = [];
     arr = prepareGraphArray(timewasters);
-    debugger;
     data = google.visualization.arrayToDataTable(arr);
 
     var options = {
@@ -35,7 +34,6 @@ function calculateTimeWasted(timewasters) {
     }
     return days;
 }
-
 function prepareGraphArray(timewasters){
     var dates = [],
         arr = [],
@@ -67,7 +65,6 @@ function prepareGraphArray(timewasters){
 
     return arr;
 }
-
 function prepareDate(date){
         var dateStr, month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
         dateStr = date.split('_');
@@ -75,4 +72,5 @@ function prepareDate(date){
 
         return dateStr;
 }
+
 

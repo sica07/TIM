@@ -172,7 +172,7 @@ function createCanvas(amt) {
       context.strokeRect(0,  0, 19, 13);*/
 
 
-    context.fillStyle = "#8c9566";
+    context.fillStyle = "#8eac1a";
     context.fillRect(0, 0, 19, 15);
 
 
