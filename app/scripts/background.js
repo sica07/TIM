@@ -31,8 +31,7 @@ function init(){
     } else if (localStorage.days){
         var days = JSON.parse(localStorage.days);
         if(days[days.length - 1] !== today){
-            days.push(today);
-            localStorage.days = JSON.stringify(days);
+            addTodayToArray(today, days);
         }
     }
     calculateCentPerSecond();
@@ -155,7 +154,7 @@ function calculateCentPerSecond(){
     CENT_PER_SECOND = (localStorage.rate * 100) / 3600;
 }
 function createCanvas(amt) {
-    var canvas, context, imageData, dailyText, x = 1;
+    var canvas, context, imageData;
 
     canvas = document.createElement('canvas');
     canvas.setAttribute('id','canvas');
@@ -202,7 +201,6 @@ function calculateWaste(seconds){
     }
     return [amt.toFixed(2), currency];
 }
-
 function createBadge(tabId, website){
     var icon, amt = calculateTotalTimeWastedToday(website);
 
@@ -229,6 +227,29 @@ function manageAmountDecimals(amt){
     }
 
     return amt;
+}
+
+function addTodayToArray(today, days)
+{
+    //we don't need more than 30 days stored
+    //in the "days" array
+    if(days.length >= 10) {
+        //store the registration
+        days.splice(0,1);
+        removeADayFromWebsiteObjects();
+    }
+    days.push(today);
+    localStorage.days = JSON.stringify(days);
+}
+
+function removeADayFromWebsiteObjects() {
+    var i, website, timewaster = JSON.parse(localStorage.timewasters);
+    for (i = 0; i < timewaster.length; i++) {
+        website = JSON.parse(localStorage[timewaster[i]])
+        //delete the second element of array, the oldest day registration
+        //the first element is the total
+        delete website[Object.keys(website)[1]]
+    }
 }
 setInterval(addTimeSpent, 1000*PERIOD);
 
