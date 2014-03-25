@@ -196,3 +196,9 @@ a:hover {
 .green{
     color: #8eac1a;
 }
+#save_message {
+    color: #8eac1a;
+    font-style: italic;
+    visibility: hidden;
+    padding: 1em;
+}

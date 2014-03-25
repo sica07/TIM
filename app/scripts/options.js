@@ -34,6 +34,10 @@ function save(){
     localStorage.denomination = denomination;
     localStorage.currency = currency;
     saveSitesList(lines);
+    document.getElementById("save_message").style.visibility = "visible";
+    setTimeout(function(){
+        document.getElementById("save_message").style.visibility = "hidden";
+    }, 3000);
 
 }
 

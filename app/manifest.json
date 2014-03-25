@@ -1,11 +1,11 @@
 {
-    "name": "__MSG_appName__",
-    "version": "0.0.4",
+    "name": "TIM",
+    "version": "0.1.0",
     "manifest_version": 2,
-    "description": "__MSG_appDescription__",
+    "description": "Time is Money -  track the money you lost while web surfing",
     "icons": {
-        "16": "images/icon-16.png",
-        "128": "images/icon-128.png"
+        "16": "images/tim-16.png",
+        "128": "images/tim-128.png"
     },
     "default_locale": "en",
     "background": {
@@ -15,8 +15,8 @@
     },
     "page_action": {
         "default_icon": {
-            "19": "images/icon-19.png",
-            "38": "images/icon-38.png"
+            "19": "images/tim-19.png",
+            "38": "images/tim-38.png"
         },
         "default_title": "TIM",
         "default_popup": "popup.html"
