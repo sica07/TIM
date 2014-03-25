@@ -40,7 +40,7 @@ function showTodayStatistics(){
             html += row;
         }
     } else {
-        html ='<tr><th>no data</th> <th>yet</th></tr>';
+        html ='<tr class="border-bottom"><th>Congrats!</th> <th>No money wasted till now!</th></tr>';
 
     }
     document.getElementById('today_table').innerHTML = html;

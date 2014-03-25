@@ -16,8 +16,9 @@ function isTimewaster(url) {
     return false;
 }
 function init(){
-    var storage = {};
-    var today = createTodayIndex();
+    var storage = {},
+    timewaster,
+    today = createTodayIndex();
 
 
     if(!localStorage.timewasters){
@@ -42,6 +43,12 @@ function init(){
         localStorage.denomination = '¢';
     }
 
+    timewaster = JSON.parse(localStorage.timewasters);
+    for (i = 0; i < timewaster.length; i++) {
+        if(!localStorage[timewaster[i]]){
+            createWebsiteStorageObject(today, timewaster[i]);
+        }
+    }
 }
 function createTodayIndex() {
     var now, day, month, today;
@@ -75,31 +82,21 @@ function addTimeSpent(){
                         if (!isTimewaster(website)) {
                             return false;
                         } else {
-
                             today = createTodayIndex();
-                            if(!localStorage[website] ){
-                                datas = {};
+                            datas = JSON.parse(localStorage[website]);
+                            if(!datas[today]){
                                 datas[today] = PERIOD;
-                                datas[0] = PERIOD;
-                                localStorage[website] = JSON.stringify(datas);
+                                tillNow = datas[0];
+                                datas[0] =  parseInt(tillNow, 0) + parseInt(PERIOD, 0);
 
                             } else {
+                                tillNow = datas[today];
+                                datas[today] =  parseInt(tillNow, 0) + parseInt(PERIOD, 0);
+                                tillNow = datas[0];
+                                datas[0] =  parseInt(tillNow, 0) + parseInt(PERIOD, 0);
 
-                                datas = JSON.parse(localStorage[website]);
-                                if(!datas[today]){
-                                    datas[today] = PERIOD;
-                                    tillNow = datas[0];
-                                    datas[0] =  parseInt(tillNow, 0) + parseInt(PERIOD, 0);
-
-                                } else {
-                                    tillNow = datas[today];
-                                    datas[today] =  parseInt(tillNow, 0) + parseInt(PERIOD, 0);
-                                    tillNow = datas[0];
-                                    datas[0] =  parseInt(tillNow, 0) + parseInt(PERIOD, 0);
-
-                                }
-                                localStorage[website] = JSON.stringify(datas);
                             }
+                            localStorage[website] = JSON.stringify(datas);
 
                             createBadge(tab.id, website);
                         }
@@ -250,6 +247,13 @@ function removeADayFromWebsiteObjects() {
         //the first element is the total
         delete website[Object.keys(website)[1]]
     }
+}
+
+function createWebsiteStorageObject(today, website){
+    var datas = {};
+    datas[today] = 0;
+    datas[0] = 0;
+    localStorage[website] = JSON.stringify(datas);
 }
 setInterval(addTimeSpent, 1000*PERIOD);
 
