@@ -1,7 +1,7 @@
 google.load("visualization", "1.0", {packages:["corechart"]});
 google.setOnLoadCallback(drawChart);
 function drawChart() {
-var timewasters = JSON.parse(localStorage.timewasters);
+    var timewasters = JSON.parse(localStorage.timewasters);
     var data, legend= [],
     arr = [];
     arr = prepareGraphArray(timewasters);
@@ -16,12 +16,10 @@ var timewasters = JSON.parse(localStorage.timewasters);
         isStacked: true,
     };
     var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-var formatter = new google.visualization.ColorFormat();
-formatter.addRange(0, 500, "#b5cc5e", "#6f851f");
     chart.draw(data, options);
 }
 function calculateTimeWasted(timewasters) {
-        var website, websites, date, amt, v, key, days = [];
+    var website, websites, date, amt, v, key, days = [];
     for (var i = 0, l = timewasters.length; i < l; i ++) {
         websites = timewasters[i];
         website = JSON.parse(localStorage[websites]);
@@ -39,10 +37,10 @@ function calculateTimeWasted(timewasters) {
 }
 function prepareGraphArray(timewasters){
     var dates = [],
-        arr = [],
-        legend = [],
-        colorArr = [],
-        color, data, website, key, day, days, date, dateStr;
+    arr = [],
+    legend = [],
+    colorArr = [],
+    color, data, website, key, day, days, date, dateStr;
 
 
     arr[0] = legend.concat('Website', timewasters, { role: 'annotation' });
@@ -55,26 +53,26 @@ function prepareGraphArray(timewasters){
         for (var i = 0, l = timewasters.length; i < l; i ++) {
             if(data[timewasters[i]]){
                 website = data[timewasters[i]];
-                    if(!website[days[date]]){
-                        website[days[date]] = 0;
-                    }
+                if(!website[days[date]]){
+                    website[days[date]] = 0;
+                }
 
-                    dates[dateStr].push(parseFloat(website[days[date]]));
+                dates[dateStr].push(parseFloat(website[days[date]]));
             }
         }
-            var temp1 = [], temp2 =[];
-            temp2 = temp1.concat(dateStr, dates[dateStr], localStorage.currency);
-            arr.push(temp2);
+        var temp1 = [], temp2 =[];
+        temp2 = temp1.concat(dateStr, dates[dateStr], localStorage.currency);
+        arr.push(temp2);
     }
 
     return arr;
 }
 function prepareDate(date){
-        var dateStr, month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
-        dateStr = date.split('_');
-        dateStr = dateStr[0] + ' ' + month[dateStr[1]];
+    var dateStr, month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+    dateStr = date.split('_');
+    dateStr = dateStr[0] + ' ' + month[dateStr[1]];
 
-        return dateStr;
+    return dateStr;
 }
 
 

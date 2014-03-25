@@ -18,8 +18,9 @@ function drawChart() {
 }
 
 function prepareGraphArray(){
-    var arr = [ ['Website', 'Total', {role: 'style'}] ],
+    var arr = [ ['Website', 'Total', {role: 'annotation'},{role: 'style'}] ],
     website,
+    amt,
     color,
     colors = ["#b5cc5e", "#c45a73", "#6b4890", "#6f851f", "#8c995b", "#7bba56",  "#d5cd62", "#96458a", "#6f851f", "#d7e6a1", "#96458a", "#d2e689"],
     timewaster = JSON.parse(localStorage.timewasters);
@@ -31,7 +32,11 @@ function prepareGraphArray(){
         } else {
             color = 'color: #ccc';
         }
-        arr.push([timewaster[i], website[0], color]);
+
+        amt = website[0] * (localStorage.rate) / 3600;
+        amt = amt.toFixed(2);
+
+        arr.push([timewaster[i], parseFloat(amt), amt+localStorage.currency, color]);
     }
 
     return arr;
