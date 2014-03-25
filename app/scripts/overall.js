@@ -9,8 +9,8 @@ function drawChart() {
     var options = {
         width: 600,
         height: 400,
-        legend: { position: 'top', maxLines: 3 },
         bar: { groupWidth: '75%' },
+        legend: { position: 'none'},
         isStacked: true,
     };
     var chart = new google.visualization.ColumnChart(document.getElementById('overall_div'));
@@ -20,11 +20,18 @@ function drawChart() {
 function prepareGraphArray(){
     var arr = [ ['Website', 'Total', {role: 'style'}] ],
     website,
+    color,
+    colors = ["#b5cc5e", "#c45a73", "#6b4890", "#6f851f", "#8c995b", "#7bba56",  "#d5cd62", "#96458a", "#6f851f", "#d7e6a1", "#96458a", "#d2e689"],
     timewaster = JSON.parse(localStorage.timewasters);
 
     for (i = 0; i < timewaster.length; i++) {
         website = JSON.parse(localStorage[timewaster[i]])
-        arr.push([timewaster[i], website[0], 'color: #b5cc5e']);
+        if(colors[i]){
+            color = 'color: '+colors[i];
+        } else {
+            color = 'color: #ccc';
+        }
+        arr.push([timewaster[i], website[0], color]);
     }
 
     return arr;

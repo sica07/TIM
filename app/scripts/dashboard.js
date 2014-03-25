@@ -12,9 +12,12 @@ var timewasters = JSON.parse(localStorage.timewasters);
         height: 400,
         legend: { position: 'top', maxLines: 3 },
         bar: { groupWidth: '75%' },
+        colors : ["#b5cc5e", "#c45a73", "#6b4890", "#6f851f", "#8c995b", "#7bba56",  "#d5cd62", "#96458a", "#6f851f", "#d7e6a1", "#96458a", "#d2e689"],
         isStacked: true,
     };
     var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+var formatter = new google.visualization.ColorFormat();
+formatter.addRange(0, 500, "#b5cc5e", "#6f851f");
     chart.draw(data, options);
 }
 function calculateTimeWasted(timewasters) {
@@ -38,7 +41,8 @@ function prepareGraphArray(timewasters){
     var dates = [],
         arr = [],
         legend = [],
-        data, website, key, day, days, date, dateStr;
+        colorArr = [],
+        color, data, website, key, day, days, date, dateStr;
 
 
     arr[0] = legend.concat('Website', timewasters, { role: 'annotation' });

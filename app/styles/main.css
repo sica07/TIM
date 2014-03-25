@@ -21,9 +21,9 @@ table {
     border-spacing: 0; 
 }
 th, td { text-align: left; padding: 2px 5px;border-bottom: 1px dotted #aaa;border-left: 1px dotted #aaa;}
-.border-top {border-top: 1px solid #b5cc5e; border-bottom: 1px solid #b5cc5e;  background: #b5cc5e;}
-.border-top > td {color: #fff;}
-.border-bottom {border-bottom: 1px solid #1c140d; background: #222}
+.border-top {border: 1px solid #eee; /* border-bottom: 1px solid #eee; */  background: #eee;}
+.border-top > td {color: #333;font-weight: bold;}
+.border-bottom {border: 1px solid #b5cc5e; background: #b5cc5e;}
 th {color: #fff; font-weight: normal;}
 form {
 margin-bottom: 20px; }
