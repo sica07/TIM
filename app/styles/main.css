@@ -27,6 +27,12 @@ th, td { text-align: left; padding: 2px 5px;border-bottom: 1px dotted #aaa;borde
 th {color: #fff; font-weight: normal;}
 form {
 margin-bottom: 20px; }
+select{
+    width: 6em;
+}
+input[type="text"] {
+    width: 5em;
+}
 input[type="text"],
 textarea,
 select {
@@ -39,7 +45,7 @@ select {
     font: 13px "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #777;
     margin: 0;
-    width: 210px;
+    /*width: 210px;*/
     max-width: 100%;
     display: block;
     margin-bottom: 20px;
@@ -60,8 +66,6 @@ legend {
     display: block;
     font-weight: bold;
 font-size: 13px;  }
-select {
-width: 220px; }
 input[type="checkbox"] {
 display: inline; }
 label span,
@@ -201,4 +205,11 @@ a:hover {
     font-style: italic;
     visibility: hidden;
     padding: 1em;
+}
+#other_currency {
+display: none; 
+border: 1px solid #fff; 
+border-radius: 5px;
+padding: 10px;
+background-color: #fff;
 }

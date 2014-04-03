@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+<meta charset="utf-8"> 
     <head>
         <title>TIM - set options</title>
         <link href="styles/main.css" rel="stylesheet">
@@ -14,10 +15,23 @@
         </div>
         <label for="rate">Rate: </label>
         <input type="text" id="rate" value="" placeholder="ex: 10"/>
-        <label for="currency">Currency symbol: </label>
-        <input type="text" id="currency" value="" placeholder="ex: $"/>
-        <label for="currency">Currency subunit symbol: </label>
-        <input type="text" id="denomination" value="" placeholder="ex: c"/>
+        <label for="currency_select">Chose currency: </label>
+        <select id="currency_select">
+            <option value="¢">$</option>
+            <option value="cent">€</option>
+            <option value="p">£</option>
+            <option value="角">元</option>
+            <option value="sen">¥</option>
+            <option value="p">₹</option>
+        </select>
+        <input type="button" id="custom_currency" value="Other currency" />
+        <div id="other_currency" style="display: none; border: 1px solid #fff; border-radius: 5px;">
+            <p>Please add the currency and minor unit symbol:</p>
+            <label for="currency">Currency:
+            <input type="text" id="ccurrency" value="" placeholder="ex: $"/>
+            <label for="currency">Sub Unit: </label>
+            <input type="text" id="cdenomination" value="" placeholder="ex: c"/>
+        </div>
         <br/>
         <label for="timewasters">Websites blacklist<br/> <span>(one per line)</span> </label>
         <textarea id="timewasters" placeholder="add each website on a new line, and without the \'http://\'" rows="10" cols="30"> </textarea>
@@ -25,5 +39,7 @@
         <button id="save">Save</button>
         <span id="save_message">New settings saved!</span>
 </div>
+            <input type="hidden" id="denomination" value="" />
+            <input type="hidden" id="currency" value="" />
     </body>
 </html>

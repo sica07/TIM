@@ -6,9 +6,37 @@ document.onreadystatechange = function () {
         document.getElementById('rate').value = localStorage.rate;
         document.getElementById('currency').value = localStorage.currency;
         document.getElementById('denomination').value = localStorage.denomination;
+        var currencySelect = document.getElementById('currency_select');
+        var customDenomination = document.getElementById('cdenomination');
+        var customCurrency = document.getElementById('ccurrency');
+        var container = document.getElementById('other_currency');
+
+        currencySelect.addEventListener('click', function(event){
+                document.getElementById('denomination').value = currencySelect[currencySelect.selectedIndex].value;
+                document.getElementById('currency').value = currencySelect[currencySelect.selectedIndex].text;
+                container.style.display = "none";
+                customCurrency.value = "";
+                customDenomination.value = "";
+        });
+
+        customDenomination.addEventListener('change', function(event){
+                document.getElementById('denomination').value = customDenomination.value;
+        });
+
+        customCurrency.addEventListener('change', function(event){
+                document.getElementById('currency').value = customCurrency.value;
+        });
+
+        document.getElementById('custom_currency').addEventListener('click', function(event){
+            if(container.style.display === "none"){
+                container.style.display = "block";
+            } else {
+                container.style.display = "none";
+            }
+        });
         document.getElementById('save').addEventListener('click', function(event){
             save();
-        })
+        });
         var rateElem =document.getElementById("rate");
         if(localStorage.rate){
             rateElem.value = localStorage.rate;
