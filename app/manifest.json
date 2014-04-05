@@ -1,8 +1,8 @@
 {
     "name": "TIM",
-    "version": "0.1.1",
+    "version": "0.1.6",
     "manifest_version": 2,
-    "description": "Time is Money -  track the money you lose while web surfing",
+    "description": "Time is Money -  how much money you lose while web surfing",
     "icons": {
         "16": "images/tim-16.png",
         "128": "images/tim-128.png"

@@ -257,7 +257,3 @@ function createWebsiteStorageObject(today, website){
 }
 setInterval(addTimeSpent, 1000*PERIOD);
 
-/*
- * Some functions are inspired by the webtimer extension (https://github.com/dskang/web-timer)
- * Thank you, Dan Kang!
- */
