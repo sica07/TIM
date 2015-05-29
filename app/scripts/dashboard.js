@@ -12,14 +12,14 @@ function drawChart() {
         height: 400,
         legend: { position: 'top', maxLines: 3 },
         bar: { groupWidth: '75%' },
-        colors : ["#b5cc5e", "#c45a73", "#6b4890", "#6f851f", "#8c995b", "#7bba56",  "#d5cd62", "#96458a", "#6f851f", "#d7e6a1", "#96458a", "#d2e689"],
+        colors : ["#8bc34a", "#009688", "#3f51b5", "#7c4dff", "#ff9800", "#ff5252",  "#795548", "#ff4081", "#cddc39", "#ff5722", "#03a9f4", "#ffeb3b"],
         isStacked: true,
     };
     var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
     chart.draw(data, options);
 }
 function calculateTimeWasted(timewasters) {
-    var website, websites, date, amt, v, key, days = [];
+    var website, websites, date, amt, total = 0, v, key, days = [];
     for (var i = 0, l = timewasters.length; i < l; i ++) {
         websites = timewasters[i];
         website = JSON.parse(localStorage[websites]);
@@ -30,9 +30,19 @@ function calculateTimeWasted(timewasters) {
                 amt = v * (localStorage.rate) / 3600;
                 amt = parseFloat(amt).toFixed(2);
                 days[websites][key] = amt;
+                total += parseFloat(amt);
             }
         }
     }
+
+    if(total < 1){
+        total = (total*100).toFixed(0)+' '+localStorage.denomination;
+    } else {
+        total = (total).toFixed(1)+' '+localStorage.currency;
+    }
+
+    document.getElementById("total").innerHTML = total;
+
     return days;
 }
 function prepareGraphArray(timewasters){

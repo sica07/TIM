@@ -11,7 +11,8 @@ function showTodayStatistics(){
 
     todayArr = bg.getSumWastedToday();
     if(todayArr.length > 0){
-        html = ' <tr class="border-bottom"> <th>website</th> <th>wasted</th> </tr>';
+        html = '';
+        //html += ' <tr class="border-bottom"> <th>website</th> <th>wasted</th> </tr>';
         for (var i = 0, l = todayArr.length; i < l; i ++) {
 
             amt = bg.calculateWaste(todayArr[i][1]);
@@ -27,14 +28,15 @@ function showTodayStatistics(){
             if(i == l-1) {
 
                 if(total < 1){
-                    total = (total*100).toFixed(2)+' <b>'+localStorage.denomination+'</b>';
+                    total = (total*100).toFixed(0)+' '+localStorage.denomination;
                 } else {
-                    total = (total).toFixed(2)+' <b>'+localStorage.currency+'</b>';
+                    total = (total).toFixed(1)+' '+localStorage.currency;
                 }
-                row += '<tr class="border-top">';
-                row += '<td><b>TOTAL </b></td>';
-                row += '<td>'+total+'</td>';
-                row += '</tr>';
+                //row += '<tr class="border-top">';
+                //row += '<td><b>TOTAL </b></td>';
+                //row += '<td>'+total+'</td>';
+                //row += '</tr>';
+                document.getElementById('total').innerHTML = total;
 
             }
             html += row;

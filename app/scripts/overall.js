@@ -21,8 +21,9 @@ function prepareGraphArray(){
     var arr = [ ['Website', 'Total', {role: 'annotation'},{role: 'style'}] ],
     website,
     amt,
+    total = 0,
     color,
-    colors = ["#b5cc5e", "#c45a73", "#6b4890", "#6f851f", "#8c995b", "#7bba56",  "#d5cd62", "#96458a", "#6f851f", "#d7e6a1", "#96458a", "#d2e689"],
+    colors = ["#8bc34a", "#009688", "#3f51b5", "#7c4dff", "#ff9800", "#ff5252",  "#795548", "#ff4081", "#cddc39", "#ff5722", "#03a9f4", "#ffeb3b"],
     timewaster = JSON.parse(localStorage.timewasters);
 
     for (i = 0; i < timewaster.length; i++) {
@@ -35,9 +36,19 @@ function prepareGraphArray(){
 
         amt = website[0] * (localStorage.rate) / 3600;
         amt = amt.toFixed(2);
+        total += parseFloat(amt);
+
+
 
         arr.push([timewaster[i], parseFloat(amt), amt+localStorage.currency, color]);
     }
+
+        if(total < 1){
+            total = (total*100).toFixed(0)+' '+localStorage.denomination;
+        } else {
+            total = (total).toFixed(1)+' '+localStorage.currency;
+        }
+        document.getElementById("total").innerHTML = total;
 
     return arr;
 }

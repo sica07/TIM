@@ -5,11 +5,15 @@
         <script src="scripts/popup.js"></script>
     </head>
     <body>
-    <ul class="headbar">
-        <li class="title">Today</li>
+    <ul class="status">
+        <li><span>TIM</span></li>
         <li><a href="overall.html" class="link_button">Overall</a></li>
-        <li><a href="dashboard.html" class="link_button">30 days</a></li>
-    </ul>
+        <li><a href="dashboard.html" class="link_button">10 days</a></li>
+      </ul>
+    <div class="headbar">
+        <span class="title">Today</span>
+        <span id="total"></span>
+    </div>
     <div class="clear"></div>
         <div id="popup-container">
             <table border="0" id="today_table"> </table>
